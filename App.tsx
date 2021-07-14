@@ -3,7 +3,7 @@ import React from "react";
 import Todo from './Todo';
 
 // rework this into regular api call, feel free to use any open api
-var todos = (): Promise<{id: string; title: string;}[]> => new Promise((res) => {
+let todos = (): Promise<{id: string; title: string;}[]> => new Promise((res) => {
   setTimeout(() => {
     res([
       {
@@ -27,8 +27,8 @@ function App() {
 
   React.useEffect(() => {
     (async () => {
-      var awaitedTodos = await todos();
-      for (var i = 0; i < awaitedTodos.length; i++) {
+      let awaitedTodos = await todos();
+      for (let i = 0; i < awaitedTodos.length; i++) {
         setState([...state, awaitedTodos[i]]);
       }
     })()
