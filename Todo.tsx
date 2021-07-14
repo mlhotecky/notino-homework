@@ -2,10 +2,7 @@ import React from "react";
 
 class Todo extends React.Component<any> {
 	shouldComponentUpdate(prevProps: any) {
-	if(this.props != prevProps) {
-		return true;
-	}
-		return false;
+		return this.props != prevProps;
 	}
 
 	handleOnClick() {
