@@ -1,24 +1,38 @@
 import React from "react";
+import {Row, Col} from "react-flexbox-grid";
+import {AppProps} from "./contants";
 
-class Todo extends React.Component<any> {
-	shouldComponentUpdate(prevProps: any) {
-		return this.props != prevProps;
-	}
-
-	handleOnClick() {
-		window.location.href = '/detail'
-	}
-
-	render() {
-
-	return (
-		<div>
-			<div onClick={this.handleOnClick}>
-			{this.props.todo.title}
-			</div>
-		</div>
-	);
-	}
+function areEqual(prevProps: AppProps, nextProps: AppProps) {
+	/*
+	return true if passing nextProps to render would return
+	the same result as passing prevProps to render,
+	otherwise return false
+	*/
+	return prevProps === nextProps
 }
 
-export default Todo;
+function Todo(props: AppProps) {
+
+	//destructuring of props
+	const {todo} = props;
+
+	const handleOnClick = () => {
+		window.location.href = `/${todo?.id}`
+	}
+
+	return (
+		// use classNames from bootstrap library
+		<div className="todo-item">
+			<Row onClick={handleOnClick}>
+				<Col md={4}>
+					{todo?.title}
+				</Col>
+				<Col md={8}>
+					{todo?.body}
+				</Col>
+			</Row>
+		</div>
+	);
+}
+
+export default React.memo(Todo, areEqual)
