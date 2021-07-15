@@ -17,7 +17,7 @@ function Todo(props: AppProps) {
 	const {todo} = props;
 
 	const handleOnClick = () => {
-		window.location.href = `/${todo?.id}`
+			window.location.href = `/${todo?.id}`
 	}
 
 	return (
