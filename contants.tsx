@@ -1,3 +1,4 @@
+import React from "react";
 
 // api prefix - shorter definition in usages
 export const API_PREFIX = "https://jsonplaceholder.typicode.com";
@@ -40,4 +41,18 @@ export interface TodoContextArray {
 export interface TodoContextDetail {
     todo: TodoObject,
     status: StatusObject
+}
+
+// type of component props
+export declare interface AppProps {
+    id?: number;
+    children?: any; // React.FunctionComponentElement<any>; - JSX element type 'Element | undefined' is not a constructor function for JSX elements.
+    context?: any; //TodoContextArray || TodoContextDetail
+    match?: any; //RouteComponentProps; - Object is possibly 'undefined'.  TS2532
+    history?: any; //RouteComponentProps; - Object is possibly 'undefined'.  TS2532
+    functionChildren?: (name: string) => React.ReactNode; // recommended function as a child render prop type
+    style?: React.CSSProperties; // to pass through style props
+    onClick?: React.MouseEvent<HTMLElement>
+    onChange?: React.FormEventHandler<HTMLInputElement>; // form events the generic parameter is the type of event.target
+    todo?: TodoObject;
 }
