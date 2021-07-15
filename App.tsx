@@ -1,46 +1,17 @@
 import React from "react";
-
-import Todo from './Todo';
-
-// rework this into regular api call, feel free to use any open api
-let todos = (): Promise<{id: string; title: string;}[]> => new Promise((res) => {
-  setTimeout(() => {
-    res([
-      {
-        id: "1",
-        title: "Go shopping",
-      },
-      {
-        id: "2",
-        title: "Job interview",
-      },
-      {
-        id: "3",
-        title: "Prepare homework",
-      },
-    ]);
-  }, 100);
-});
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import TodoList from './TodoList';
+import TodoDetail from "./TodoDetail";
 
 function App() {
-  const [state, setState] = React.useState<{ id: string; title: string }[]>([]);
-
-  React.useEffect(() => {
-    (async () => {
-      let awaitedTodos = await todos();
-      for (let i = 0; i < awaitedTodos.length; i++) {
-        setState([...state, awaitedTodos[i]]);
-      }
-    })()
-  })
-
-  return (
-    <div>
-      {state.map((todo) => (
-        <Todo todo={todo} />
-      ))}
-    </div>
-  );
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/" component={TodoList} />
+                <Route path="/:id" component={TodoDetail} />
+            </Switch>
+        </Router>
+    );
 }
 
 export default App;
