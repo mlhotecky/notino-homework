@@ -15,3 +15,29 @@ export enum DATA_MESSAGE {
     NO_DATA = "No data.",
     ERROR = "Error ocurred:"
 }
+
+// interface of basic item in list - expected object
+export interface TodoObject {
+    id: number;
+    title: string,
+    body: string
+}
+
+// interface for status of calling api
+export interface StatusObject {
+    type: STATUS,
+    // optional value of interface - we need message only if api call throws error
+    message?: string
+}
+
+// interface for context object in list
+export interface TodoContextArray {
+    todos: TodoObject[],
+    status: StatusObject
+}
+
+// interface for context object in detail
+export interface TodoContextDetail {
+    todo: TodoObject,
+    status: StatusObject
+}
